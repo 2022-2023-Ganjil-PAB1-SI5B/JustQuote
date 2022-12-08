@@ -1,6 +1,7 @@
 package com.ahmfarisi.justquote.Adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -26,17 +27,20 @@ public class AdapterQuote extends RecyclerView.Adapter<AdapterQuote.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View V = LayoutInflater.from(ctx).inflate(R.layout.item_quote, parent, false);
+        return new ViewHolder(V);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        QuoteModel QM = listQuote.get(position);
+        holder.tvText.setText(QM.getText());
+        holder.tvAuthor.setText(QM.getAuthor());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listQuote.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -48,5 +52,5 @@ public class AdapterQuote extends RecyclerView.Adapter<AdapterQuote.ViewHolder>{
             tvAuthor = itemView.findViewById(R.id.tv_author);
         }
     }
-    
+
 }
